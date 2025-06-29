@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --border-color: #dddddd;
+      --code-bg: #f4f4f4;
+      --blockquote-border: #dddddd;
+      --table-border: #dddddd;
+    }
+    
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --border-color: #444444;
+      --code-bg: #2d2d2d;
+      --blockquote-border: #555555;
+      --table-border: #555555;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    code {
+      background-color: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+    
+    pre {
+      background-color: var(--code-bg);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    blockquote {
+      border-left: 4px solid var(--blockquote-border);
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text-color);
+      opacity: 0.8;
+      font-style: italic;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid var(--border-color);
+      margin: 30px 0;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    ul, ol {
+      padding-left: 25px;
+    }
+    
+    li {
+      margin: 8px 0;
+    }
+    
+    .task-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .task-item {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+    
+    .task-item input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      border: 1px solid var(--table-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--table-border);
+    }
+    
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    
+    tr:hover {
+      background-color: var(--code-bg);
+    }
+    
+    .toc {
+      background-color: var(--code-bg);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .toc h2 {
+      margin-top: 0;
+      color: var(--text-color);
+    }
+    
+    .toc ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .toc li {
+      margin: 5px 0;
+    }
+    
+    .toc a {
+      text-decoration: none;
+      color: var(--text-color);
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .toc a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+    
+    .footnotes {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .footnote-backref {
+      text-decoration: none;
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+    
+    .math-inline {
+      font-family: 'Times New Roman', serif;
+    }
+    
+    .math-block {
+      text-align: center;
+      margin: 20px 0;
+      font-family: 'Times New Roman', serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+    }
+    
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.5em; }
+    h4 { font-size: 1.3em; }
+    h5 { font-size: 1.1em; }
+    h6 { font-size: 1em; }
+    
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    [data-theme="dark"] a {
+      color: #66b3ff;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+  
+<div class="toc">
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#my-markdown-document">My Markdown Document</a></li>
+   <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#text-formatting">Text Formatting</a></li>
+   <li><a href="#lists">Lists</a></li>
+    <li><a href="#unordered-list">Unordered List</a></li>
+    <li><a href="#ordered-list">Ordered List</a></li>
+   <li><a href="#links">Links</a></li>
+   <li><a href="#code-blocks">Code Blocks</a></li>
+   <li><a href="#blockquotes">Blockquotes</a></li>
+   <li><a href="#horizontal-rules">Horizontal Rules</a></li>
+   <li><a href="#mixed-content">Mixed Content</a></li>
+    <li><a href="#advanced-formatting">Advanced Formatting</a></li>
+   <li><a href="#tables-basic">Tables (Basic)</a></li>
+   <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+
+<h1 id="my-markdown-document">My Markdown Document</h1>
+<p>This is a sample Markdown document to test the converter.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Welcome to this <strong>comprehensive</strong> guide on Markdown syntax. This document demonstrates <em>various</em> formatting options that can be converted to HTML.</p>
+<h3 id="text-formatting">Text Formatting</h3>
+<p>Here are some examples of text formatting:</p>
+<ul>
+  <li><strong>Bold text</strong> using double asterisks</li>
+</ul>
+  <li><strong>Bold text</strong> using double underscores</li>
+  <li><em>Italic text</em> using single asterisks</li>
+  <li><em>Italic text</em> using single underscores</li>
+  <li><del>Strikethrough text</del> using tildes</li>
+  <li><code>Inline code</code> using backticks</li>
+<h2 id="lists">Lists</h2>
+<h3 id="unordered-list">Unordered List</h3>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item (using dash)</li>
+  <li>Fourth item (using plus)</li>
+<h3 id="ordered-list">Ordered List</h3>
+<ol>
+  <li>First numbered item</li>
+</ul>
+</ol>
+<ol>
+  <li>Second numbered item</li>
+</ol>
+<ol>
+  <li>Third numbered item</li>
+</ol>
+<h2 id="links">Links</h2>
+<p>Here's a <a href="<a href="https://www.google.com">link">https://www.google.com">link</a> to Google</a></p>
+<h2 id="code-blocks">Code Blocks</h2>
+<p>Here's some inline code: <code>console.log("Hello World!")</code></p>
+<p>And here's a code block:</p>
+<pre><code class="language-javascript">function greet(name) {
+return `Hello, ${name}!`;
+}
+console.log(greet("World"));
+</code></pre>
+<pre><code class="language-python">def fibonacci(n):
+if n &lt;= 1:
+return n
+return fibonacci(n-1) + fibonacci(n-2)
+print(fibonacci(10))
+</code></pre>
+<h2 id="blockquotes">Blockquotes</h2>
+<blockquote><p>This is a blockquote. It's used to highlight important text or quotes from other sources.</p></blockquote>
+<blockquote><p></p></blockquote>
+<blockquote><p>It can span multiple lines and paragraphs.</p></blockquote>
+<h2 id="horizontal-rules">Horizontal Rules</h2>
+<p>Here's a horizontal rule:</p>
+<hr>
+<p>And another one:</p>
+<hr>
+<h2 id="mixed-content">Mixed Content</h2>
+<p>You can combine <strong>bold</strong> and <em>italic</em> text, add <code>code snippets</code>, and even include <a href="<a href="https://example.com">links</a>">https://example.com">links</a></a> within the same paragraph.</p>
+<h3 id="advanced-formatting">Advanced Formatting</h3>
+<p>Here's a paragraph with <strong>bold <em>italic</em> text</strong> and some <code>inline code</code> mixed together.</p>
+<h2 id="tables-basic">Tables (Basic)</h2>
+<table>
+<thead>
+<tr><th>Header 1</th><th>Header 2</th><th>Header 3</th></tr>
+</thead>
+<tbody>
+<tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr>
+<tr><td>Cell 4</td><td>Cell 5</td><td>Cell 6</td></tr>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<p>This document showcases most of the Markdown features supported by our converter. The HTML output should preserve all the formatting and structure shown here.</p>
+<hr>
+<ul>
+  <li>Document created: 2025*</li>
+</ul>
+
+  
+  <script>
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+    
+    // Configure MathJax
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']]
+      }
+    };
+    
+    // Dark mode toggle
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', body.getAttribute('data-theme'));
+    }
+    
+    // Persist theme across reloads
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</body>
+</html>
