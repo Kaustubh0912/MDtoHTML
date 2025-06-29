@@ -223,6 +223,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 **Simple, Fast, Effective** - A single C++ file that does it all!
 
-[Download main.cpp](main.cpp) · [Report Issues](https://github.com/your-username/md2html/issues) · [View Samples](samples/)
+[Download main.cpp](main.cpp) · [Report Issues](https://github.com/Kaustubh0912/MDtoHTML/issues) 
 
 </div>
